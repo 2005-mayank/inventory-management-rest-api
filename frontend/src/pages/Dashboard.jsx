@@ -5,6 +5,9 @@ function Dashboard() {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
 
+  const [loading, setLoading] = useState(false);
+const [error, setError] = useState("");
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -20,14 +23,20 @@ function Dashboard() {
     fetchProducts();
   }, []);
 
-  const fetchProducts = async () => {
-    try {
-      const response = await api.get("/products");
-      setProducts(response.data.data);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
+ const fetchProducts = async () => {
+  setLoading(true);
+  setError("");
+
+  try {
+    const response = await api.get("/products");
+    setProducts(response.data.data);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    setError("Failed to load products.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleChange = (e) => {
     setFormData({
@@ -106,6 +115,23 @@ function Dashboard() {
     return (
     <div className="dashboard">
       <h1>Inventory Dashboard</h1>
+      {loading && (
+  <p style={{ color: "blue", fontWeight: "bold" }}>
+    Loading products...
+  </p>
+)}
+
+{error && (
+  <p
+    style={{
+      color: "red",
+      fontWeight: "bold",
+      marginBottom: "15px",
+    }}
+  >
+    {error}
+  </p>
+)}
 
       <form
         onSubmit={handleSubmit}

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
+import "../styles/Dashboard.css";
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -8,16 +11,23 @@ function Dashboard() {
   const [loading, setLoading] = useState(false);
 const [error, setError] = useState("");
 
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    price: "",
-    category: "",
-    brand: "",
-    quantity: "",
-    supplier: "",
-    sku: "",
-  });
+const [formData, setFormData] = useState({
+  name: "",
+  description: "",
+  price: "",
+  category: "",
+  brand: "",
+  quantity: "",
+  supplier: "",
+  sku: "",
+});
+const navigate = useNavigate();
+const { logout } = useAuth();
+
+const handleLogout = () => {
+  logout();
+  navigate("/login");
+};
 
   useEffect(() => {
     fetchProducts();
@@ -74,9 +84,11 @@ const [error, setError] = useState("");
         sku: "",
       });
     } catch (error) {
-      console.error(error);
-      alert("Something went wrong");
-    }
+  console.error("Full Error:", error);
+  console.log("Response:", error.response?.data);
+
+  alert(error.response?.data?.message || error.message);
+}
   };
 
   const handleDelete = async (id) => {
@@ -113,10 +125,28 @@ const [error, setError] = useState("");
     });
   };
     return (
-    <div className="dashboard">
-      <h1>Inventory Dashboard</h1>
-      {loading && (
-  <p style={{ color: "blue", fontWeight: "bold" }}>
+     <div className="dashboard">
+    <div className="dashboard-header">
+  <div>
+    <h1>Inventory Dashboard</h1>
+    <p>Manage your products efficiently</p>
+  </div>
+
+  <button
+  className="logout-btn"
+  onClick={handleLogout}
+>
+  Logout
+</button>
+</div>
+{loading && (
+  <p
+    style={{
+      color: "#00E5FF",
+      fontWeight: "bold",
+      marginBottom: "15px",
+    }}
+  >
     Loading products...
   </p>
 )}

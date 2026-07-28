@@ -1,0 +1,179 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,Arial,sans-serif;
+}
+
+.login-page{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+overflow:hidden;
+}
+
+.login-card{
+width:430px;
+padding:45px;
+border-radius:25px;
+background:rgba(20,25,45,.55);
+backdrop-filter:blur(30px);
+border:1px solid rgba(0,229,255,.25);
+box-shadow:
+0 0 25px rgba(0,229,255,.2),
+inset 0 0 20px rgba(255,255,255,.03);
+animation:cardFloat 5s ease-in-out infinite;
+z-index:10;
+}
+
+@keyframes cardFloat{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+.logo{
+
+width:90px;
+height:90px;
+
+margin:auto;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:42px;
+
+border-radius:50%;
+
+background:linear-gradient(135deg,#00E5FF,#2563EB);
+
+box-shadow:0 0 35px #00e5ff;
+
+margin-bottom:25px;
+
+}
+
+.login-card h1{
+color:white;
+font-size:38px;
+font-weight:700;
+text-align:center;
+margin-bottom:10px;
+letter-spacing:.5px;
+text-shadow:0 0 18px #00e5ff;
+}
+.login-card p{
+
+color:#d1d5db;
+
+text-align:center;
+
+margin-bottom:35px;
+
+}
+
+.login-card form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.login-card input{
+height:56px;
+border:1px solid rgba(255,255,255,.08);
+outline:none;
+border-radius:15px;
+padding:0 18px;
+font-size:16px;
+background:#10172d;
+color:white;
+transition:.35s;
+}
+
+.login-card > p {
+  color: #d1d5db;
+  text-align: center;
+  margin-bottom: 35px;
+}
+.login-card input:focus{
+
+border:1px solid #00E5FF;
+
+box-shadow:0 0 20px rgba(0,229,255,.4);
+
+}
+
+.login-card button{
+
+height:56px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:18px;
+
+font-weight:600;
+
+cursor:pointer;
+
+background:linear-gradient(135deg,#00E5FF,#2563EB);
+
+color:white;
+
+transition:.35s;
+
+box-shadow:0 0 25px rgba(0,229,255,.4);
+
+}
+
+.login-card button:hover{
+transform:translateY(-4px) scale(1.02);
+box-shadow:0 0 45px rgba(0,229,255,.8);
+}
+
+.bottom-text{
+
+margin-top:28px;
+
+text-align:center;
+
+color:white;
+
+}
+
+.bottom-text span{
+
+color:#00E5FF;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.bottom-text {
+  margin-top: 28px;
+  text-align: center;
+  color: white;
+}
